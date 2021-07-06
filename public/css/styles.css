@@ -1,0 +1,31 @@
+.container {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.content {
+    padding: 5px;
+    margin: 0 auto;
+}
+
+.content span {
+    width: 250px;
+}
+
+.dz-message {
+    text-align: center;
+    font-size: 28px;
+}
+
+.img-effect {
+    transition: .5s ease;
+    opacity: 1;
+}
+
+.img-effect:hover {
+    opacity: 0.3;
+}
+
+.selected{
+    border: #4e73dfbf 2px solid;
+}

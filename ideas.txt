@@ -1,0 +1,17 @@
+hacer un input en el login con las categorias
+empleado, dueño, invitado
+empleado y dueño tienen clave y usuarios y puede ver y editar ciertas cosas
+invitado no tiene clave pero tiene poco acceso a datos
+* en compras, cantidad, poner un input que sean 2 botones para incrementar o decrementar, y validar si 
+hay suficientes productos en stock
+
+-Mostrar modales que ayuden a orientar en las secciones de compra y venta
+-Poner un button deslizante en configuracion para desactivar las AYUDAS
+-Grafico de estadisticas en el dashboad. Opcion de habilitar cada Grafico en la parte de confiGuraciones
+-Ocultar el id y poner el numero de la fila
+-Input de cantidad en COMPRAS Y VENTAS
+
+<VirtualHost *:80>
+DocumentRoot "C:/xampp/htdocs/pos/public"
+ServerName localhost
+</VirtualHost>
