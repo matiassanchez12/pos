@@ -33,7 +33,9 @@
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
                 //muestro el ultimo ingresado
-                "ordering" : false
+               sDom: 'lrtip',
+                "ordering" : false,
+                "info":     false
             });
         });
     </script>

@@ -4,7 +4,7 @@ empleado y dueño tienen clave y usuarios y puede ver y editar ciertas cosas
 invitado no tiene clave pero tiene poco acceso a datos
 * en compras, cantidad, poner un input que sean 2 botones para incrementar o decrementar, y validar si 
 hay suficientes productos en stock
-
+-accesos directos (con los logs de donde entra la persona mas seguido)
 -Mostrar modales que ayuden a orientar en las secciones de compra y venta
 -Poner un button deslizante en configuracion para desactivar las AYUDAS
 -Grafico de estadisticas en el dashboad. Opcion de habilitar cada Grafico en la parte de confiGuraciones

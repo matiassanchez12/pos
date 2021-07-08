@@ -8,11 +8,10 @@ use App\Models\CategoriasModel;
 use App\Models\UnidadesModel;
 use Error;
 use Imagenes;
-// use PDF;
-use CodeIgniter\Config\Services;
+use Barcode;
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use PhpOffice\PhpSpreadsheet\Cell\DataType;
 
 class Productos extends BaseController
 {
@@ -388,9 +387,7 @@ class Productos extends BaseController
         foreach ($productos as $producto) {
             $codigo = $producto['codigo'];
 
-            $generaBarcode = new \Barcode();
-
-            $generaBarcode->barcode("images/barcode/" . $codigo . ".png", $codigo, 20, 'horizontal', 'code39', true);
+            Barcode::barcode("images/barcode/" . $codigo . ".png", $codigo, 20, 'horizontal', 'code39', true);
 
             $pdf->Image("images/barcode/" . $codigo . ".png");
         }

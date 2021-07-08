@@ -2,14 +2,16 @@
 
 namespace App\Controllers;
 
+
 use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
 use App\Models\CajasModel;
 use App\Models\RolesModel;
 use App\Models\LogsModel;
+
+use Imagenes;
 use Error;
 use Exception;
-use Imagenes;
 
 class Usuarios extends BaseController
 {
