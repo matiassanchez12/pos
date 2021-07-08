@@ -10,12 +10,13 @@
 # OS X Thumbnails
 ._*
 
+/vendor
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-vendor
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
