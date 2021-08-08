@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-4 text-gray-800"><i class="fas fa-user-tag"></i> <?php echo $titulo ?></h4>
+        <h4 class="mb-4 text-gray-800"><i class="fas fa-user-tag"></i> <?php echo $titulo ?></h4>
 
         <?php if (isset($validation)) { ?>
             <div class="alert alert-danger">
@@ -12,7 +12,7 @@
 
         <form method="POST" action="<?php echo base_url(); ?>/roles/insertar">
 
-            <div class="form-group">
+            <div class="form-group card shadow p-4">
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <label>Nombre</label>

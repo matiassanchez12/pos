@@ -7,7 +7,7 @@
         <div>
             <p>
                 <a href="<?php echo base_url(); ?>/productos/nuevo" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</a>
-                <a href="<?php echo base_url(); ?>/productos/mostrarCodigos" class="btn btn-light border border-dark"><i class="fas fa-barcode"></i> Códigos de barras</a>
+                <!-- <a href="<?php echo base_url(); ?>/productos/mostrarCodigos" class="btn btn-light border border-dark"><i class="fas fa-barcode"></i> Códigos de barras</a> -->
                 <a href="<?php echo base_url(); ?>/productos/eliminados" class="btn btn-info">Eliminados <i class="fas fa-arrow-right"></i></a>
             </p>
         </div>
@@ -36,9 +36,10 @@
                                     <td><?php echo $dato['precio_venta']; ?></td>
                                     <td><?php echo $dato['existencias']; ?></td>
                                     <td class="text-center">
+                                        <a href="#" data-href="" data-toggle="modal" data-target="#modal-imagen" data-placement="top" title="Ver codigo de barra" class="btn-bar btn btn-primary btn-sm rounded-circle ml-2"><i class="fas fa-barcode"></i></a>
                                         <a href="#" data-href="" data-toggle="modal" data-target="#modal-imagen" data-placement="top" title="Mostrar imagen" class="btn-img btn btn-secondary btn-sm rounded-circle ml-2"><i class="fas fa-camera"></i></a>
                                         <a href="<?php echo base_url() . '/productos/editar/' . $dato['id'] ?>" title="Editar" class="btn btn-warning btn-sm rounded-circle ml-2"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="#" data-href="<?php echo base_url() . '/productos/eliminar/' . $dato['id'] ?>" data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Eliminar registro" class="btn btn-danger btn-sm rounded-circle ml-2"><i class="fas fa-trash"></i></a>
+                                        <a href="#" data-href="<?php echo base_url() . '/productos/eliminar/' . $dato['id'] ?>"  data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm rounded-circle ml-2"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -77,9 +78,9 @@
     <div class="modal fade" id="modal-imagen" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="false">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Imagen del producto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-header bg-dark">
+                    <h5 class="modal-title " id="exampleModalLabel1">Imagen del producto</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -97,6 +98,7 @@
             var row = $(this).closest('tr');
             var id = row[0].childNodes[1].innerHTML;
 
+            $('#exampleModalLabel1').replaceWith('<h5 class="modal-title text-light" id="exampleModalLabel1">Imagen del producto</h5>');
             $('#modal-imagen').modal('show');
             $('#imagen_modal').append('<img src="<?php echo base_url() . "/images/productos/"; ?>' + id + '.png? <?php echo time(); ?>" id="imagen_product" class="img-responsive rounded-circle img-thumbnail" alt="img" style="max-width: 100%; height:150px">');
         })
@@ -104,4 +106,18 @@
         $('#modal-imagen').on('hidden.bs.modal', function() {
             $('#imagen_product').remove();
         })
+
+        $('.t-body').on('click', '.btn-bar', function() {
+            var row = $(this).closest('tr');
+            var codigo = row[0].childNodes[3].innerHTML;
+
+            $('#exampleModalLabel1').replaceWith('<h5 class="modal-title text-light" id="exampleModalLabel1">Codigo de barra</h5>');
+            $('#modal-imagen').modal('show');
+            $('#imagen_modal').append('<img src="<?php echo base_url() . "/images/barcode/"; ?>' + codigo + '.png? <?php echo time(); ?>" id="imagen_product" class="img-responsive img-thumbnail" alt="img" style="max-width:100%; object-fit: cover; height: 150px;">');
+        })
+
+        $('#modal-imagen').on('hidden.bs.modal', function() {
+            $('#imagen_product').remove();
+        })
+
     </script>

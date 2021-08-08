@@ -8,6 +8,7 @@ use App\Models\ProductosModel;
 use App\Models\temporalComprasModel;
 use App\Models\DetalleComprasModel;
 use App\Models\ConfiguracionModel;
+use CodeIgniter\Config\Config;
 use FPDF;
 
 class Compras extends BaseController
@@ -103,10 +104,18 @@ class Compras extends BaseController
 
     public function generaCompraPdf($id_compra)
     {
+        define('EURO', chr(128));
+
         $datosCompra = $this->compras->where('id', $id_compra)->first();
         $detalleCompra = $this->detalle_compra->select('*')->where('id_compra', $id_compra)->findAll();
         $nombreTienda = $this->configuracion->select('valor')->where('nombre', 'tienda_nombre')->get()->getRow()->valor;
         $direccionTienda = $this->configuracion->select('valor')->where('nombre', 'tienda_direccion')->get()->getRow()->valor;
+
+        $moneda = Configuracion::GetSimboloMoneda();
+
+        if ($moneda !== '$' && $moneda !== 'R$') {
+            $moneda = EURO;
+        }
 
         $pdf = new FPDF('P', 'mm', 'letter');
         $pdf->AddPage();
@@ -155,17 +164,17 @@ class Compras extends BaseController
             $pdf->Cell(14, 5, $contador, 1, 0, 'C');
             $pdf->Cell(25, 5, $row['id_producto'], 1, 0, 'C');
             $pdf->Cell(77, 5, $row['nombre'], 1, 0, 'C');
-            $pdf->Cell(25, 5, '$' . $row['precio'], 1, 0, 'C');
+            $pdf->Cell(25, 5, $moneda . Configuracion::cambiarFormatoPrecio($row['precio']), 1, 0, 'C');
             $pdf->Cell(25, 5, $row['cantidad'], 1, 0, 'C');
-            $totalImporte =  number_format($row['cantidad'] * $row['precio'], 2, '.', ',');
-            $pdf->Cell(30, 5, '$' . $totalImporte, 1, 1, 'R');
+            $totalImporte =  $row['cantidad'] * $row['precio'];
+            $pdf->Cell(30, 5, $moneda .  Configuracion::cambiarFormatoPrecio($totalImporte), 1, 1, 'R');
             $contador++;
         }
 
         $pdf->Ln();
 
         $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(195, 5, 'Total $'. number_format($datosCompra['total'], 2, ".", ","), 0, 1, 'R');
+        $pdf->Cell(195, 5, 'Total '. $moneda. Configuracion::cambiarFormatoPrecio($datosCompra['total']), 0, 1, 'R');
 
         $this->response->setContentType('application/pdf');
         $pdf->Output('compra_pdf.pdf', 'I');

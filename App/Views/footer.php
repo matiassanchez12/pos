@@ -25,22 +25,21 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+   
     <script>
         $(document).ready(function() {
             $("#dataTable").DataTable({
                 destroy: true,
+                sDom: 'lrtip',
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
                 //muestro el ultimo ingresado
-               sDom: 'lrtip',
-                "ordering" : false,
-                "info":     false
+                "ordering": false,
+                "info": false
             });
         });
-    </script>
-    
-    <script>
+   
         $('#modal-confirma').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         });
@@ -51,8 +50,8 @@
             }
         });
     </script>
+
+
     </body>
-
-
 
     </html>

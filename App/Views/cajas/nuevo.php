@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-4 text-gray-800"><i class="fas fa-users"></i> <?php echo $titulo ?></h4>
+        <h4 class="mb-4 text-gray-800"><i class="fas fa-users"></i> <?php echo $titulo ?></h4>
 
         <?php if (isset($validation)) { ?>
             <div class="alert alert-danger">
@@ -12,7 +12,7 @@
 
         <form method="POST" action="<?php echo base_url(); ?>/cajas/insertar">
 
-            <div class="form-group">
+            <div class="form-group card p-4 shadow">
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <label>Numero de caja:</label>
@@ -24,15 +24,14 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="form-group mb-5">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-12 col-sm-6">
                         <label>Folio:</label>
                         <input type="text" name="folio" id="folio" class="form-control" value="<?php echo set_value('folio') ?>" required>
                     </div>
                 </div>
             </div>
+            
             <a href="<?php echo base_url(); ?>/cajas" class="btn btn-primary">Regresar</a>
             <button type="submit" class="btn btn-success">Agregar</button>
         </form>

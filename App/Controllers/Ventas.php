@@ -85,6 +85,7 @@ class Ventas extends BaseController
         $session = session();
 
         $caja = $this->cajas->where('id', $session->id_caja)->first();
+
         $folio = $caja['folio'];
 
         $resultadoID = $this->ventas->insertaVenta($folio, $total, $session->id_usuario, $session->id_caja, $id_cliente, $forma_pago);
@@ -93,10 +94,9 @@ class Ventas extends BaseController
             $folio++;
             $this->cajas->update($session->id, ['folio'=>$folio]);
  
-            $resultadoCompra = $this->temporal_compra->porCompra($folio);
-
+            $resultadoCompra = $this->temporal_compra->porCompra($id_venta);
+            
             foreach ($resultadoCompra as $row) {
-                echo $resultadoID;
                 $this->detalle_venta->save([
                     'id_venta' => $resultadoID,
                     'id_producto' => $row['id_producto'],
@@ -128,11 +128,22 @@ class Ventas extends BaseController
 
     public function generaTicket($id_venta)
     {
+        define('EURO', chr(128));
+
         $datosVenta = $this->ventas->where('id', $id_venta)->first();
         $detalleVenta = $this->detalle_venta->select('*')->where('id_venta', $id_venta)->findAll();
         $nombreTienda = $this->configuracion->select('valor')->where('nombre', 'tienda_nombre')->get()->getRow()->valor;
         $direccionTienda = $this->configuracion->select('valor')->where('nombre', 'tienda_direccion')->get()->getRow()->valor;
+        $telefonoTienda = $this->configuracion->select('valor')->where('nombre', 'tienda_telefono')->get()->getRow()->valor;
         $leyendaTicket = $this->configuracion->select('valor')->where('nombre', 'ticket_leyenda')->get()->getRow()->valor;
+        $agregar_direc = $this->configuracion->select('valor')->where('nombre', 'agregar_direc')->get()->getRow()->valor;
+        $agregar_tel = $this->configuracion->select('valor')->where('nombre', 'agregar_tel')->get()->getRow()->valor;
+
+        $moneda = Configuracion::GetSimboloMoneda();
+
+        if ($moneda !== '$' && $moneda !== 'R$') {
+            $moneda = EURO;
+        }
 
         $pdf = new FPDF('P', 'mm', array(80, 200));
         $pdf->AddPage();
@@ -145,8 +156,15 @@ class Ventas extends BaseController
 
         $pdf->Cell(55, 5, $nombreTienda, 0, 1, 'C');
 
-        $pdf->SetFont('Arial', '', 9);
-        $pdf->Cell(65, 5, $direccionTienda, 0, 1, 'C');
+        if ($agregar_direc == 1) {
+            $pdf->SetFont('Arial', '', 9);
+            $pdf->Cell(65, 5, $direccionTienda, 0, 1, 'C');
+        }
+        
+        if ($agregar_tel == 1) {
+            $pdf->SetFont('Arial', '', 9);
+            $pdf->Cell(65, 5, 'Telefono: ' . $telefonoTienda, 0, 1, 'C');
+        }
 
         $pdf->Ln();
 
@@ -176,21 +194,20 @@ class Ventas extends BaseController
         foreach ($detalleVenta as $row) {
             $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'C');
             $pdf->Cell(35, 5, $row['nombre'], 0, 0, 'C');
-            $pdf->Cell(15, 5, $row['precio'], 0, 0, 'C');
-            $totalImporte =  number_format($row['cantidad'] * $row['precio'], 2, '.', ',');
-            $pdf->Cell(15, 5, '$' . $totalImporte, 0, 1, 'R');
+            $pdf->Cell(15, 5, $moneda. Configuracion::cambiarFormatoPrecio($row['precio']), 0, 0, 'C');
+            $totalImporte =  Configuracion::cambiarFormatoPrecio($row['cantidad'] * $row['precio']);
+            $pdf->Cell(15, 5, $moneda . $totalImporte, 0, 1, 'R');
             $contador++;
         }
 
         $pdf->Ln();
 
         $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(70, 5, 'Total $' . number_format($datosVenta['total'], 2, ".", ","), 0, 1, 'R');
+        $pdf->Cell(70, 5, 'Total '. $moneda . Configuracion::cambiarFormatoPrecio($datosVenta['total']), 0, 1, 'R');
 
         $pdf->Ln();
 
         $pdf->Cell(70, 5, $leyendaTicket, 0, 1, 'C');
-
         $this->response->setContentType('application/pdf');
         $pdf->Output('venta_pdf.pdf', 'I');
     }

@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-5 text-gray-800"><i class="fas fa-box-open"></i> <?php echo $titulo ?></h4>
+        <h4 class="mb-4 text-gray-800"><i class="fas fa-edit"></i> <?php echo $titulo ?></h4>
 
         <?php if (isset($validation)) { ?>
             <div class="alert alert-danger">
@@ -15,17 +15,23 @@
         <form method="POST" enctype="multipart/form-data" action="<?php echo base_url(); ?>/productos/actualizar">
             <input type="hidden" value="<?php echo $producto['id']; ?>" name="id" id="id">
             <div class="row">
-                <div class="form-group col-12 col-sm-8">
+                <div class="form-group col-12 col-sm-7 card shadow p-4">
+                    <h5 class="m-0 text-gray-800">Datos del producto</h5>
+                    <hr class="sidebar-divider d-none d-md-block">
+
                     <div class="row">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-4">
                             <label>Código</label>
-                            <input type="text" name="codigo" id="codigo" class="form-control" value="<?php echo $producto["codigo"] ?>" onblur="buscarProducto(this, this.value)" required autofocus>
-                            <div id="validacionCodigo" class="invalid-feedback">
+                            <div class="d-flex">
+                                <input type="text" name="codigo" id="codigo" class="form-control" value="<?php echo $producto["codigo"] ?>" onblur="buscarProducto(this, this.value)" required autofocus>
+                                <span class="btn btn-dark" onclick="generateCode()" title="Generar codigo random"><i class="fas fa-random"></i></span>
+                            </div>
+                            <div id="validacionCodigo" class="d-none invalid-feedback">
                                 El c&oacute;digo ya existe.
                             </div>
-                            generar codigo rando
                         </div>
-                        <div class="col-12 col-sm-6">
+
+                        <div class="col-12 col-sm-12 mt-3">
                             <label>Descripción</label>
                             <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $producto["nombre"] ?>" required>
                         </div>
@@ -68,14 +74,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group col-12 col-sm-4 text-center">
-                    <h5 class="text-gray-800" id="titulo_imagen"><i class="fas fa-camera"></i> Imagen del producto</h5>
+
+                <div class="form-group col-12 col-sm-4 text-center card p-4 ml-5" style="align-self: center;">
+                    <h5 class="text-gray-800 " id="titulo_imagen"><i class="fas fa-camera"></i> Imagen del producto</h5>
+                    <hr class="sidebar-divider d-none d-md-block">
                     <input type="file" name="imagen_producto" id="imagen_producto" onchange="previewFile()" accept="image/*" hidden>
 
                     <label for="imagen_producto" class="mt-4 mb-4 mx-auto d-block position-relative" style="width:180px; height:150px;">
-                        <img src="<?php echo base_url() . "/images/productos/".$producto["id"].".png?" . time(); ?>; ?>" id="imagen" class="btn img-effect p-0 img-responsive rounded-circle img-thumbnail" alt="img" style="max-width: 100%; height:150px">
-                      
-                        <span tabindex="0" class="position-absolute" data-toggle="tooltip"  title="Cargar imagen en formato png de 150x150 pixeles">
+                        <img src="<?php echo base_url() . "/images/productos/" . $producto["id"] . ".png?" . time(); ?>; ?>" id="imagen" class="btn img-effect p-0 img-responsive rounded-circle img-thumbnail" alt="img" style="max-width: 100%; height:150px">
+
+                        <span tabindex="0" class="position-absolute" data-toggle="tooltip" title="Cargar imagen en formato png de 150x150 pixeles">
                             <button class="btn btn-dark rounded-circle btn-sm" style="pointer-events: none; width: 30px;" type="button" disabled><i class="fas fa-info"></i></button>
                         </span>
                     </label>
@@ -84,10 +92,11 @@
                 </div>
             </div>
 
-            <div class="form-group mt-4 mb-4">
+            <div class="form-group card shadow p-4">
+                <h4 class="h4 m-0 text-gray-800">Inventario</h4>
+                <hr class="sidebar-divider d-none d-md-block">
                 <div class="row justify-content-left">
                     <div class="col-12 col-sm-4">
-                        <h4 class="h4 mb-2 text-gray-800">Inventario</h4>
                         <div class="form-check  mt-3 mb-3">
                             <input type="checkbox" class="form-check-input" name="inventariable" id="inventariable" onchange="cambioValue(this.value)" value="<?php echo ($producto['inventariable']) ?>" <?php echo ($producto['inventariable']) ? 'checked' : ''; ?>>
                             <label class="form-check-label" for="inventariable">Marcar si utiliza inventario</label>
@@ -95,17 +104,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 col-sm-6">
                         <label>Stock minimo</label>
                         <input type="text" name="stock_minimo" id="stock_minimo" class="form-control" value="<?php echo $producto["stock_minimo"] ?>" <?php echo ($producto['inventariable']) ? '' : 'disabled'; ?> required>
                     </div>
-                    <div class="col-12 col-sm-4">
+                    <div class="col-12 col-sm-6">
                         <label>Existencias actuales</label>
                         <input type="text" name="existencias" id="existencias" class="form-control" value="<?php echo $producto["existencias"]  ?>" <?php echo ($producto['inventariable']) ? '' : 'disabled'; ?> required>
                     </div>
                 </div>
             </div>
-            <div class="mt-5">
+            <div>
                 <a href="<?php echo base_url(); ?>/productos" class="btn btn-primary">Regresar</a>
                 <button type="submit" class="btn btn-success">Actualizar</button>
             </div>
@@ -156,13 +165,14 @@
                         if (resultado == 0) {
                             $(tagCodigo).val('');
                         } else {
-
                             if (resultado.existe) {
                                 $(tagCodigo).prop('aria-describedby', 'validacionCodigo');
                                 $(tagCodigo).prop('class', 'form-control is-invalid');
                                 $(tagCodigo).val('');
                                 $(tagCodigo).focus();
+                                $('#validacionCodigo').prop('class', 'd-block invalid-feedback');
                             } else {
+                                $('#validacionCodigo').prop('class', 'd-none invalid-feedback');
                                 $(tagCodigo).removeProp('aria-describedby');
                                 $(tagCodigo).prop('class', 'form-control');
                             }
@@ -186,5 +196,12 @@
             } else {
                 preview.src = "";
             }
+        }
+
+
+        function generateCode() {
+            let num = Math.floor(Math.random() * 99999) + 11111;
+            $('#codigo').focus();
+            $('#codigo').val(num);
         }
     </script>

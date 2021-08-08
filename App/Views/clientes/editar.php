@@ -2,12 +2,14 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-2 text-gray-800"><?php echo $titulo ?></h4>
+        <h4 class="mb-4 text-gray-800"><i class="fas fa-user-edit"></i> <?php echo $titulo ?></h4>
 
         <form method="POST" action="<?php echo base_url(); ?>/clientes/actualizar">
             <input type="hidden" value="<?php echo $cliente['id']; ?>" name="id">
 
-            <div class="form-group">
+            <div class="form-group mt-4 card shadow p-4">
+                <h5 class="m-0 text-gray-800">Datos del cliente</h5>
+                <hr class="sidebar-divider d-none d-md-block">
                 <div class="row">
                     <div class="col-12 col-sm-12">
                         <label><span class="text-danger">*</span>Nombre</label>

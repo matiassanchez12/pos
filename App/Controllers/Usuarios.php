@@ -2,16 +2,15 @@
 
 namespace App\Controllers;
 
-
 use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
 use App\Models\CajasModel;
 use App\Models\RolesModel;
 use App\Models\LogsModel;
 
-use Imagenes;
 use Error;
 use Exception;
+use Imagenes;
 
 class Usuarios extends BaseController
 {
@@ -167,6 +166,27 @@ class Usuarios extends BaseController
 
         echo view('header');
         echo view('usuarios/nuevo', $data);
+        echo view('footer');
+    }
+
+    public function perfil()
+    {
+        $user_session = session();
+        $id = $user_session->id_usuario;
+        
+        $usuario = $this->usuarios->where('id', $id)->first();
+        $cajas = $this->cajas->where('activo', 1)->findAll();
+        $roles = $this->roles->where('activo', 1)->findAll();
+
+        $data = [
+            'titulo' => 'Editar usuario',
+            'datos' => $usuario,
+            'cajas' => $cajas,
+            'roles' => $roles
+        ];
+
+        echo view('header');
+        echo view('usuarios/perfil', $data);
         echo view('footer');
     }
 

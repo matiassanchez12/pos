@@ -35,8 +35,7 @@ class TemporalComprasModel extends Model
     public function porCompra($folio){
         $this->select('*');
         $this->where('folio', $folio);
-        $datos = $this->findAll();
-        return $datos;
+        return $this->findAll();
     }
 
     public function actualizarProductoCompra($id_producto, $folio, $cantidad, $subtotal)

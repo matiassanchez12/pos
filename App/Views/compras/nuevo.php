@@ -1,10 +1,14 @@
 <?php
+
+use App\Controllers\Configuracion;
+
 $id_compra = uniqid();
+
+Configuracion::cambiarFormatoPrecio(123);
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
     <!-- Page Heading -->
     <form method="POST" id="form_compra" name="form_compra" action="<?php echo base_url(); ?>/compras/guarda">
 
@@ -13,34 +17,16 @@ $id_compra = uniqid();
                 <div class="col-12 col-sm-4">
                     <input type="hidden" id="id_compra" name="id_compra" value="<?php echo $id_compra; ?>">
                     <input type="hidden" id="id_producto" name="id_producto">
-                    <label>Codigo:</label>
-                    <input type="text" name="codigo" id="codigo" class="form-control" placeholder="Ingresar un codigo y presionar enter..." onkeyup="buscarProducto(event, this, this.value)" autofocus>
-                    <label for="codigo" id="resultado_error" class="text-danger"></label>
-                </div>
-                <div class="col-12 col-sm-4">
-                    <label>Nombre del producto:</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control" disabled>
-                </div>
-                <div class="col-12 col-sm-4">
-                    <label>Cantidad:</label>
-                    <input onchange="calcularSubTotal(this.value)" type="text" name="cantidad" id="cantidad" class="form-control" placeholder="Ingresar cantidad y presionar enter...">
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="row">
-                <div class="col-12 col-sm-4">
-                    <label>Precio de compra:</label>
-                    <input type="text" name="precio_compra" id="precio_compra" class="form-control" disabled>
-                </div>
-                <div class="col-12 col-sm-4">
-                    <label>Subtotal:</label>
-                    <input type="text" name="subtotal" id="subtotal" class="form-control" disabled>
-                </div>
-                <div class="col-12 col-sm-4 align-self-end">
-                    <label>&nbsp;</label>
-                    <button id='agregar_producto' name="agregar_producto" type="button" onclick="agregarProducto(id_producto.value, cantidad.value, '<?php echo $id_compra ?>')" class="btn-lg btn-primary">Agregar producto</button>
+                    <label class="text-gray-800">Código de barras</label>
+                    <div class="input-group ui-widget">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <span class="fas fa-fw fa-barcode"></span>
+                            </div>
+                        </div>
+                        <input type="text" name="codigo" id="codigo" class="form-control ui-autocomplete-input" placeholder="Ingresar codigo" autocomplete="off" autofocus>
+                        <label for="codigo" id="resultado_error" class="text-danger"></label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,72 +50,46 @@ $id_compra = uniqid();
         <div class="row">
             <div class="col-12 col-sm-6 offset-md-6">
                 <label style="font-weight: bold; font-size: 30px; text-align: center;">
-                    Total $
+                    Total <?php echo Configuracion::GetSimboloMoneda()?>
                 </label>
                 <input type="text" id="total" name="total" size="7" readonly="true" value="0.00" style="font-weight: bold; font-size: 30px; text-align: center;">
-                <button type="button" id="completa_compra" class="btn btn-success">Completar compra</button>
+                <button type="button" id="completa_compra" class="btn btn-success"><i class="fas fa-check-circle"></i> Completar compra</button>
             </div>
         </div>
     </form>
 </div>
-<!-- /.container-fluid -->
-
 </div>
-<!-- End of Main Content -->
-
-
-<script src="<?php echo base_url(); ?>/vendor/jquery/jquery.min.js"></script>
+    
 <script>
     $(document).ready(function() {
         $("#completa_compra").click(function() {
             let nFila = $("#tablaProductos tr").length;
-            console.log("asd");
-            if (nFila < 2) {
-                console.log("asd");
-            } else {
+            if (nFila < 2) {alert('Ingresar productos')} else {
                 $("#form_compra").submit();
             }
         })
     });
 
-    function buscarProducto(e, tagCodigo, codigo) {
-        var enterKey = 13;
-
-        if (codigo != '') {
-            if (e.which == enterKey) {
-                $.ajax({
-                    url: '<?php echo base_url(); ?>/productos/buscarPorCodigo/' + codigo,
-                    dataType: 'json',
-                    success: function(resultado) {
-                        if (resultado == 0) {
-                            $(tagCodigo).val('');
-                        } else {
-                            $("#resultado_error").html(resultado.error);
-
-                            if (resultado.existe) {
-                                $("#id_producto").val(resultado.datos.id);
-                                $("#nombre").val(resultado.datos.nombre);
-                                $("#cantidad").val(1);
-                                $("#precio_compra").val(resultado.datos.precio_compra);
-                                $("#subtotal").val(resultado.datos.precio_compra);
-                                $("#cantidad").focus();
-                            } else {
-                                $("#id_producto").val('');
-                                $("#nombre").val('');
-                                $("#cantidad").val('');
-                                $("#precio_compra").val('');
-                                $("#subtotal").val('');
-                            }
-                        }
+    $(function() {
+        $("#codigo").autocomplete({
+            source: "<?php echo base_url(); ?>/productos/autocompleteData",
+            minLength: 1,
+            select: function(event, ui) {
+                event.preventDefault();
+                $("#codigo").val(ui.item.value);
+                setTimeout(
+                    function() {
+                        e = jQuery.Event("keypress");
+                        e.which = 13;
+                        agregarProducto(ui.item.id, 1, '<?php echo $id_compra; ?>');
                     }
-                })
+                )
             }
-        }
-    }
+        })
+    })
 
     function agregarProducto(id_producto, cantidad, id_compra) {
         if (id_producto != null && id_producto != 0 && cantidad > 0) {
-
             $.ajax({
                 url: '<?php echo base_url(); ?>/temporalCompras/insertar/' + id_producto + "/" + cantidad + "/" + id_compra,
                 dataType: 'json',
@@ -146,16 +106,21 @@ $id_compra = uniqid();
                             $("#nombre").val('');
                             $("#codigo").val('');
                             $("#codigo").focus();
-                            $("#cantidad").val('');
                             $("#precio_compra").val('');
                             $("#subtotal").val('');
                         }
                     }
                 }
             })
+        } else {
+            if (cantidad == 0) {
+                alert('La cantidad debe ser mayor a 0');
+            } else {
+                alert('Ingresar producto');
+            }
         }
     }
-    
+
     function eliminarProducto(id_producto, id_compra) {
         $.ajax({
             url: '<?php echo base_url(); ?>/temporalCompras/eliminar/' + id_producto + "/" + id_compra,
@@ -164,7 +129,6 @@ $id_compra = uniqid();
                 if (resultado == 0) {
                     $(tagCodigo).val('');
                 } else {
-
                     var data = resultado;
                     $("#tablaProductos tbody").empty();
                     $("#tablaProductos tbody").append(data.datos);
@@ -174,16 +138,21 @@ $id_compra = uniqid();
         })
     }
 
-    function calcularSubTotal(cantidad) {
-        //Valido que sea un numero
-        //Agregar un error con color rojo si no lo es
-        if (cantidad != null && !isNaN(cantidad)) {
-
-            precio = $("#precio_compra").val() * cantidad;
-            $("#subtotal").val(precio);
-        } else {
-            console.log("ingresar solo numeros");
-        }
+    function cambiarCantidad(id_producto, id_venta, objecto) {
+        $.ajax({
+            url: '<?php echo base_url(); ?>/temporalCompras/actualizarCantidad/' + id_producto + "/" + id_venta + "/" + objecto.value,
+            dataType: 'json',
+            success: function(resultado) {
+                if (resultado == 0) {
+                    $(tagCodigo).val('');
+                } else {
+                    console.log(resultado)
+                    var data = resultado;
+                    $("#tablaProductos tbody").empty();
+                    $("#tablaProductos tbody").append(data.datos);
+                    $("#total").val(data.total);
+                }
+            }
+        })
     }
-
 </script>

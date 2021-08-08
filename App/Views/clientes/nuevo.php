@@ -2,13 +2,14 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-2 text-gray-800"><i class="fas fa-user-friends"></i> <?php echo $titulo ?></h4>
-
+        <h4 class="mb-4 text-gray-800"><i class="fas fa-user-friends"></i> <?php echo $titulo ?></h4>
         <form method="POST" action="<?php echo base_url(); ?>/clientes/insertar">
 
             <?php echo csrf_field(); ?>
 
-            <div class="form-group mt-4">
+            <div class="form-group mt-4 card shadow p-4">
+                <h5 class="m-0 text-gray-800">Datos del cliente</h5>
+                <hr class="sidebar-divider d-none d-md-block">
                 <div class="row">
                     <div class="col-12 col-sm-12">
                         <label><span class="text-danger">*</span>Nombre</label>
@@ -33,7 +34,7 @@
                 </div>
                 <p class="text-danger mt-3">( * ) Campo obligatorio</p>
             </div>
-            <div class="mt-5">
+            <div>
                 <a href="<?php echo base_url(); ?>/clientes" class="btn btn-primary">Regresar</a>
                 <button type="submit" class="btn btn-success">Agregar</button>
             </div>
@@ -45,5 +46,3 @@
 
     </div>
     <!-- End of Main Content -->
-
-    

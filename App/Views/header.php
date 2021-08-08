@@ -6,6 +6,9 @@ $user_session = session();
 
 $nombre_tienda = Configuracion::GetNombre();
 
+$color_tema = Configuracion::GetColorTema();
+
+$tamaño_fuente = Configuracion::GetFuente();
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +28,7 @@ $nombre_tienda = Configuracion::GetNombre();
     <title>Sistema Punto de Venta</title>
 
     <!-- Custom fonts for this template -->
-     <script src="https://kit.fontawesome.com/b9aec109f3.js" crossorigin="anonymous"></script>
-
+    <link href="<?php echo base_url(); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -36,42 +38,11 @@ $nombre_tienda = Configuracion::GetNombre();
     <link href="<?php echo base_url(); ?>/css/styles.css" rel="stylesheet">
 
     <link href="<?php echo base_url(); ?>/js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-
-    <link href="<?php echo base_url(); ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- Custom styles for this page -->
-
-    <!-- Bootstrap core JavaScript-->
-
     <script src="<?php echo base_url(); ?>/vendor/jquery/jquery.min.js"></script>
-
-    <script src="<?php echo base_url(); ?>/js/jquery-ui/jquery-ui.min.js"></script>
-
-    <script src="<?php echo base_url(); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="<?php echo base_url(); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
-
-
-    <!-- Custom scripts for all pages-->
-    <script src="<?php echo base_url(); ?>/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="<?php echo base_url(); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
-
-    <script src="<?php echo base_url(); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="<?php echo base_url(); ?>/js/demo/datatables-demo.js"></script>
-
-    <script src="<?php echo base_url(); ?>/js/Chart.min.js"></script>
-
-    <script src="<?php echo base_url(); ?>/js/Chart.js"></script>
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-size: <?php echo $tamaño_fuente; ?>px;">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
@@ -83,7 +54,7 @@ $nombre_tienda = Configuracion::GetNombre();
             <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
         </symbol>
     </svg>
-    <h1>asd</h1>
+
     <div class="alert alert-success position-absolute toast" style="top: 10%; right:0;" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true">
         <div class="toast-body">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
@@ -100,15 +71,16 @@ $nombre_tienda = Configuracion::GetNombre();
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class='navbar-nav sidebar sidebar-dark accordion <?php echo $color_tema ?>' id="accordionSidebar" aria-expanded="true" aria-controls="accordionSidebar">
 
             <!-- Sidebar - Brand -->
+
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url(); ?>/inicio">
-                <!-- <div class="sidebar-brand-icon rotate-n-15 nav-link"> -->
-                <!-- <i class="fas fa-laugh-wink"></i> -->
-                <img class="img-profile rounded-circle" style="width: 38px; height: 38px;" src=<?php echo base_url() . "/images/logotipo.png?" . time(); ?>>
-                <!-- </div> -->
-                <div class="d-none d-lg-inline sidebar-brand-text mx-3"><?php echo $nombre_tienda; ?></div>
+                <div class="sidebar-brand-icon">
+                    <img class="img-profile rounded-circle img-fluid" style="width: 38px; height: 38px;" src=<?php echo base_url() . "/images/logotipo.png?" . time(); ?>>
+                </div>
+
+                <div class="sidebar-brand-text mx-3"><?php echo $nombre_tienda; ?></div>
             </a>
 
             <!-- Divider -->
@@ -163,17 +135,10 @@ $nombre_tienda = Configuracion::GetNombre();
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                <a class="nav-link " href="<?php echo base_url(); ?>/reportes">
                     <i class="fas fa-list"></i>
                     <span>Reportes</span>
                 </a>
-                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo base_url(); ?>/productos/mostrarMinimos">Reporte minimos</a>
-                        <a class="collapse-item" href="<?php echo base_url(); ?>/productos/generarExcel">Reporte minimos excel</a>
-                        <a class="collapse-item" href="<?php echo base_url(); ?>/logs/respaldo_database">Respaldo</a>
-                    </div>
-                </div>
             </li>
 
             <li class="nav-item">
@@ -183,7 +148,8 @@ $nombre_tienda = Configuracion::GetNombre();
                 </a>
                 <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?php echo base_url(); ?>/configuracion">Configuracion</a>
+                        <a class="collapse-item" href="<?php echo base_url(); ?>/configuracion">Mi tienda</a>
+                        <a class="collapse-item" href="<?php echo base_url(); ?>/configuracion/general">Configuracion</a>
                         <a class="collapse-item" href="<?php echo base_url(); ?>/usuarios">Usuarios</a>
                         <a class="collapse-item" href="<?php echo base_url(); ?>/roles">Roles</a>
                         <a class="collapse-item" href="<?php echo base_url(); ?>/cajas">Cajas</a>
@@ -231,7 +197,7 @@ $nombre_tienda = Configuracion::GetNombre();
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="<?php echo base_url() . '/usuarios/editar/' . $user_session->id_usuario; ?>">
+                                <a class="dropdown-item" href="<?php echo base_url() . '/usuarios/perfil'?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2"></i>
                                     Perfil
                                 </a>
@@ -273,3 +239,31 @@ $nombre_tienda = Configuracion::GetNombre();
                         </div>
                     </div>
                 </div>
+
+
+
+                <script src="<?php echo base_url(); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+                <script src="<?php echo base_url(); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
+
+                <script src="<?php echo base_url(); ?>/js/jquery-ui/jquery-ui.min.js"></script>
+
+                <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+
+                <link href="<?php echo base_url(); ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+                <script src="<?php echo base_url(); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                <!-- Custom scripts for all pages-->
+                <script src="<?php echo base_url(); ?>/js/sb-admin-2.min.js"></script>
+
+                <!-- Page level plugins -->
+
+                <script src="<?php echo base_url(); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+                <!-- Page level custom scripts -->
+                <script src="<?php echo base_url(); ?>/js/demo/datatables-demo.js"></script>
+
+                <script src="<?php echo base_url(); ?>/js/Chart.min.js"></script>
+
+                <script src="<?php echo base_url(); ?>/js/Chart.js"></script>

@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-2 text-gray-800"><?php echo $titulo ?></h4>
+        <h4 class="mb-4 text-gray-800"><i class="fas fa-cash-register"></i> <?php echo $titulo ?></h4>
 
         <?php if (isset($validation)) { ?>
             <div class="alert alert-danger">
@@ -12,7 +12,7 @@
 
         <form method="POST" action="<?php echo base_url(); ?>/cajas/nuevo_arqueo">
 
-            <div class="form-group">
+            <div class="form-group card shadow p-4">
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <label>Numero de caja:</label>
@@ -23,10 +23,7 @@
                         <input type="text" name="nombre_caja" id="nombre_caja" class="form-control" value="<?php echo $datos['nombre_caja']; ?>" required>
                     </div>
                 </div>
-
-            </div>
-            <div class="form-group">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-12 col-sm-6">
                         <label>Monto inicial:</label>
                         <input type="text" name="monto_inicial" id="monto_inicial" class="form-control" value="" required>
@@ -36,10 +33,7 @@
                         <input type="text" name="folio_inicial" id="folio_inicial" class="form-control" value="<?php echo $datos['folio']; ?>" required>
                     </div>
                 </div>
-            </div>
-            
-            <div class="form-group">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-12 col-sm-6">
                         <label>Fecha:</label>
                         <input type="date" name="fecha" id="fecha" class="form-control" value="<?php echo date('Y-m-d'); ?>" required>

@@ -2,7 +2,11 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-2 text-gray-800"><?php echo $titulo ?></h4>
+        <h4 class="h3 mb-2 text-gray-800"><?php
+
+use App\Controllers\Configuracion;
+
+echo $titulo ?></h4>
 
         <div>
             <p>
@@ -29,7 +33,7 @@
                                 <tr>
                                     <td><?php echo $compra['id']; ?></td>
                                     <td><?php echo $compra['folio']; ?></td>
-                                    <td><?php echo "$" . $compra['total']; ?></td>
+                                    <td><?php echo Configuracion::GetSimboloMoneda() . Configuracion::cambiarFormatoPrecio($compra['total']); ?></td>
                                     <td><?php echo $compra['fecha_alta']; ?></td>
                                     <td class="text-center"><a href="<?php echo base_url() . '/compras/muestraCompraPdf/' . $compra['id'] ?>" title="Ver registro en pdf" class="btn btn-primary btn-sm rounded-circle ml-2"><i class="fas fa-file-pdf"></i></a></td>
                                 </tr>

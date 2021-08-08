@@ -51,14 +51,24 @@ if ($user_session != null) {
                                         <hr>
                                     </div>
                                     <form class="user" method="POST" action="<?php echo base_url(); ?>/usuarios/valida">
-                                        <div class="form-group input-group flex-nowrap">
-                                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-user"></i></span>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-user" id="addon-wrapping"></span>
+                                                </div>
+                                            </div>
                                             <input type="text" class="form-control" value="admin" name="usuario" id="usuario" placeholder="Ingresar usuario..." aria-label="Username" aria-describedby="addon-wrapping">
                                         </div>
-                                        <div class="form-group input-group flex-nowrap">
-                                            <span class="input-group-text" id="addon-wrapping"><i class="fas fa-unlock"></i></span>
+
+                                        <div class="input-group mt-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-unlock" id="addon-wrapping"></span>
+                                                </div>
+                                            </div>
                                             <input type="password" class="form-control" value="admin" name="password" id="password" placeholder="Ingresar Contraseña..." aria-label="Username" aria-describedby="addon-wrapping">
                                         </div>
+                                   
                                         <div class="form-group input-group align-items-center mb-3 mt-3">
                                             <input type="checkbox" name="remember" id="remember" style="margin-right:10px; width: 15px; height: 15px;">
                                             <label for="remember" class="m-0"> Recordar usuario</label>

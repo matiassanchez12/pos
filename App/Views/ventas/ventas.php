@@ -2,7 +2,11 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-2 text-gray-800"><?php echo $titulo ?></h4>
+        <h4 class="h3 mb-2 text-gray-800"><?php
+
+use App\Controllers\Configuracion;
+
+echo $titulo ?></h4>
 
         <div>
             <p>
@@ -29,7 +33,7 @@
                                 <tr>
                                     <td><?php echo $dato['folio']; ?></td>
                                     <td><?php echo $dato["cliente"]; ?></td>
-                                    <td><?php echo $dato['total']; ?></td>
+                                    <td><?php echo Configuracion::GetSimboloMoneda() . Configuracion::cambiarFormatoPrecio($dato['total']); ?></td>
                                     <td><?php echo $dato['fecha_alta']; ?></td>
                                     <td><?php echo $dato["cajero"]; ?></td>
                                     <td class="text-center">

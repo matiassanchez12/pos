@@ -2,7 +2,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h4 class="h3 mb-2 text-gray-800"><i class="fas fa-key"></i> <?php echo $titulo ?></h4>
+        <h4 class="mb-4 text-gray-800"><i class="fas fa-key"></i> <?php echo $titulo ?></h4>
 
         <?php if (isset($validation)) { ?>
             <div class="alert alert-danger">
@@ -14,7 +14,7 @@
         <form method="POST" action="<?php echo base_url() . '/usuarios/actualizar_password/' . $usuario['id'] ;?> ">
             <input type="hidden" value="<?php echo $usuario['id']; ?>" name="id">
 
-            <div class="form-group">
+            <div class="form-group card shadow p-4">
                 <div class="row">
                     <div class="col-12 col-sm-6">
                         <label>Usuario:</label>
@@ -25,12 +25,10 @@
                         <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $usuario['nombre']; ?>" disabled>
                     </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-12 col-sm-6">
-                        <label>Contraseña:</label>
+                        <label>Nueva contraseña:</label>
                         <input type="password" name="password" id="password" class="form-control" required>
                     </div>
                     <div class="col-12 col-sm-6">

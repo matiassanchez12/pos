@@ -29,7 +29,7 @@
                                     <td><?php echo $dato['id']; ?></td>
                                     <td><?php echo $dato['nombre']; ?></td>
                                     <td class="text-center">
-                                        <a href="<?php echo base_url() . '/roles/detalles/' . $dato['id'] ?>" class="btn btn-secondary btn-sm rounded-circle ml-2"><i class="fas fa-list-alt"></i></a>
+                                        <a href="<?php echo base_url() . '/roles/detalles/' . $dato['id'] ?>" class="btn btn-secondary btn-sm rounded-circle ml-2"><i class="fas fa-shield-alt"></i></a>
                                         <a href="<?php echo base_url() . '/roles/editar/' . $dato['id'] ?>" class="btn btn-warning btn-sm rounded-circle ml-2"><i class="fas fa-pencil-alt"></i></a>
                                         <a href="#" data-href="<?php echo base_url() . '/roles/eliminar/' . $dato['id'] ?>" data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Eliminar registro" class="btn btn-danger btn-sm rounded-circle ml-2"><i class="fas fa-trash"></i></a>
                                     </td>
