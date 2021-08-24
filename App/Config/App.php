@@ -23,7 +23,7 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'http://localhost/pos/public/';
+	public $baseURL = 'https://pos-app-s.herokuapp.com/public/';
 
 	/**
 	 * --------------------------------------------------------------------------
