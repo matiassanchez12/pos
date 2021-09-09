@@ -23,7 +23,7 @@ define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
 // Ensure the current directory is pointing to the front controller's directory
 chdir(__DIR__);
 
-$pathsConfig = FCPATH . '../app/Config/Paths.php';
+$pathsConfig = FCPATH . '../App/Config/Paths.php';
 // ^^^ Change this if you move your application folder
 require realpath($pathsConfig) ?: $pathsConfig;
 
