@@ -10,7 +10,7 @@
 # OS X Thumbnails
 ._*
 
-/vendor
+/vendor/
 
 # Windows image file caches
 Thumbs.db
