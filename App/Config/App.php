@@ -24,7 +24,7 @@ class App extends BaseConfig
 	 * @var string
 	 */
 	
-	 public $baseURL = 'http://localhost/pos/public/';
+	 public $baseURL = 'https://boiling-peak-24210.herokuapp.com/public/';
 	
 	 /**
 	 * --------------------------------------------------------------------------
