@@ -23,9 +23,10 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'http://localhost/pos/public/';
-
-	/**
+	
+	 public $baseURL = 'http://localhost/pos/public/';
+	
+	 /**
 	 * --------------------------------------------------------------------------
 	 * Index File
 	 * --------------------------------------------------------------------------
