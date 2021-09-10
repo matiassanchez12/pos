@@ -38,7 +38,8 @@
 	},
 	"scripts": {
 		"post-update-cmd": [
-			"CodeIgniter\\ComposerScripts::postUpdate"
+			"php artisan clear-compiled",
+     "chmod -R 775 public/"
 		],
 		"test": "phpunit"
 	},

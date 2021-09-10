@@ -23,10 +23,16 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
+<<<<<<< HEAD
 	
 	 public $baseURL = 'https://boiling-peak-24210.herokuapp.com/public/';
 	
 	 /**
+=======
+	public $baseURL = 'https://pos-app-s.herokuapp.com/public/';
+
+	/**
+>>>>>>> 93c58b7fb11b67b6e579859ca619534ad29380a8
 	 * --------------------------------------------------------------------------
 	 * Index File
 	 * --------------------------------------------------------------------------
