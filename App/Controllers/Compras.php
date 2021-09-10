@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\ComprasModel;
 use App\Models\ProductosModel;
-use App\Models\temporalComprasModel;
+use App\Models\TemporalComprasModel;
 use App\Models\DetalleComprasModel;
 use App\Models\ConfiguracionModel;
 use CodeIgniter\Config\Config;
@@ -68,7 +68,7 @@ class Compras extends BaseController
 
         $resultadoID = $this->compras->insertaCompra($id_compra, $total, $session->id_usuario);
 
-        $this->temporal_compra = new temporalComprasModel();
+        $this->temporal_compra = new TemporalComprasModel();
 
         if ($resultadoID) {
             $resultadoCompra = $this->temporal_compra->porCompra($id_compra);

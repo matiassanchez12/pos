@@ -9,9 +9,8 @@ use App\Models\UnidadesModel;
 use Error;
 use Imagenes;
 use Barcode;
-
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Productos extends BaseController
 {
@@ -411,7 +410,7 @@ class Productos extends BaseController
         $pdf->SetTitle('Producto con stock minimo');
         $pdf->SetFont('Arial', 'B', 10);
 
-        $pdf->Image("http://localhost/images/logotipo.png", 10, 5, 25);
+        $pdf->Image(base_url() . "/images/logotipo.png", 10, 5, 25);
 
         $pdf->Cell(0, 5, utf8_decode('Reporte de productos con stock mínimo'), 0, 1, 'C');
 
@@ -501,16 +500,28 @@ class Productos extends BaseController
 
         $hoja->getStyle('A6:D' . $ultimaFila)->applyFromArray($styleArray);
 
-        // $hoja->setCellValueExplicit('C' . $fila, "=SUMA(C5:C'.$ultimaFila')", \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_FORMULA);
-        $hoja->setCellValueExplicit(
-            "C$fila",
-            "=SUMA(C5:C$ultimaFila)",
-            \PhpOffice\PhpSpreadsheet\Cell\DataType::TYPE_STRING2
-        );
-        $writer = new Xlsx($phpExcel);
-        $writer->save('reporte_minimos.xlsx');
+        $hoja->getStyle("B$fila:D$fila")->applyFromArray($styleArray);
 
-        return redirect()->to(base_url() . '/productos/generarExcel');
+        $hoja->getStyle("B$fila")->getFont()->setBold(true);
+
+        $hoja->setCellValue("B$fila", 'TOTAL');
+
+        $SUMRANGE_Existencias = "C7:C$ultimaFila";
+        $hoja->setCellValue("C$fila" , "=SUM($SUMRANGE_Existencias)");
+
+        $SUMRANGE_Stock = "D7:D$ultimaFila";
+        $hoja->setCellValue("D$fila" , "=SUM($SUMRANGE_Stock)");
+        
+        $strFilename = sprintf('%s_%s_subscriptions', date('Y-m-d-H-i'), 'hola');
+        
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="' . $strFilename . '.xlsx"');
+        header('Cache-Control: max-age=0');
+        
+        $writer = IOFactory::createWriter($phpExcel, 'Xlsx');
+        $writer->save('php://output');
+
+        die();
     }
 
     function mostrarAvatars()

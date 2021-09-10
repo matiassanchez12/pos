@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\temporalComprasModel;
+use App\Models\TemporalComprasModel;
 use App\Models\ProductosModel;
 
 class TemporalCompras extends BaseController
@@ -15,9 +15,9 @@ class TemporalCompras extends BaseController
     public function __construct()
     {
         $this->productos = new ProductosModel();
-        $this->comprasTemporales = new temporalComprasModel();
+        $this->comprasTemporales = new TemporalComprasModel();
     }
-
+    
     public function insertar($id_producto, $cantidad, $id_compra)
     {
         $error = '';

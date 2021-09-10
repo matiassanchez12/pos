@@ -53,22 +53,10 @@ class Logs extends BaseController
         $db_user = 'root';
         $db_pass = '379784577a';
 
-        define("DB_USER",  $db_user);
-        define("DB_PASSWORD", $db_pass);
-        define("DB_NAME", $db_name);
-        define("DB_HOST", $db_host);
-
-        define("BACKUP_DIR", 'C:/downloads'); // Comment this line to use same script's directory ('.')
-        define("TABLES", 'pos'); // Full backup
-        //define("TABLES", 'table1, table2, table3'); // Partial backup
-        define("CHARSET", 'utf8');
-        define("GZIP_BACKUP_FILE", false); // Set to false if you want plain SQL backup files (not gzipped)
-        define("DISABLE_FOREIGN_KEY_CHECKS", true); // Set to true if you are having foreign key constraint fails
-
-        // return redirect()->to(base_url() . '/logs/respaldo_database')->with('res', 'ok');
+        Logs::Export_Database($db_host, $db_user, $db_pass, $db_name);
     }
 
-    function Export_Database($host,$user,$pass,$name,  $tables=false, $backup_name=false )
+    public static function Export_Database($host,$user,$pass,$name, $tables=false, $backup_name=false )
     {
         $mysqli = new mysqli($host,$user,$pass,$name); 
         $mysqli->select_db($name); 
@@ -91,7 +79,7 @@ class Logs extends BaseController
             $res            =   $mysqli->query('SHOW CREATE TABLE '.$table); 
             $TableMLine     =   $res->fetch_row();
             $content        = (!isset($content) ?  '' : $content) . "\n\n".$TableMLine[1].";\n\n";
-
+            
             for ($i = 0, $st_counter = 0; $i < $fields_amount;   $i++, $st_counter=0) 
             {
                 while($row = $result->fetch_row())  
@@ -132,10 +120,12 @@ class Logs extends BaseController
             } $content .="\n\n\n";
         }
         //$backup_name = $backup_name ? $backup_name : $name."___(".date('H-i-s')."_".date('d-m-Y').")__rand".rand(1,11111111).".sql";
-        $backup_name = $backup_name ? $backup_name : $name.".sql";
+        // $backup_name = $backup_name ? $backup_name : $name.".sql";
+        $backup_name = "respaldo_app.sql";
         header('Content-Type: application/octet-stream');   
         header("Content-Transfer-Encoding: Binary"); 
         header("Content-disposition: attachment; filename=\"".$backup_name."\"");  
-        echo $content; exit;
+        echo $content; 
+        exit;
     }
 }

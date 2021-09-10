@@ -166,6 +166,7 @@ class Cajas extends BaseController
     {
         $arqueos = $this->arqueoModel->getDatos($id_caja);
         $data = [
+            'caja_actual' => $id_caja,
             'titulo' => 'Cierres de caja',
             'datos' => $arqueos
         ];
@@ -183,7 +184,9 @@ class Cajas extends BaseController
         $arqueos_caja = $this->arqueoModel->where(['id_caja' => $session->id_caja, 'estatus' => 1])->countAllResults();
 
         if ($arqueos_caja) {
-            echo "La caja ya esta abierta";
+            echo view('header');
+            echo "<h5><b>Ya hay una caja abierta..</b></h5>";
+            echo view('footer');
             exit;
         }
 
@@ -207,7 +210,7 @@ class Cajas extends BaseController
         }
     }
 
-    public function cerrar_caja()
+    public function cerrar_caja($caja_actual)
     {
         $this->request = \Config\Services::request();
         $session = session();
@@ -222,20 +225,26 @@ class Cajas extends BaseController
                 'estatus' => 0
             ]);
 
-            return redirect()->to(base_url() . "/cajas");
+            return redirect()->to(base_url() . "/cajas/arqueo/" . $caja_actual);
         } else {
             $monto_total = $this->ventas->totalDia(date('Y-m-d'));
             $arqueo = $this->arqueoModel->where(['id_caja' => $session->id_caja, 'estatus' => 1])->first();
             $caja = $this->cajas->where('id', $session->id_caja)->first();
 
-            $data = ['titulo' => 'Cierre de caja', 'datos' => $caja, 'arqueo' => $arqueo, 'monto_total' => $monto_total];
+            $data = [
+                'titulo' => 'Cierre de caja',
+                'datos' => $caja,
+                'arqueo' => $arqueo,
+                'monto_total' => $monto_total,
+                'caja_actual' => $caja_actual
+            ];
             echo view('header');
             echo view('cajas/cerrar_arqueo', $data);
             echo view('footer');
         }
     }
 
-    public function cambiar_estado($id)
+    public function cambiar_estado($id, $caja_actual)
     {
         $this->request = \Config\Services::request();
 
@@ -259,6 +268,6 @@ class Cajas extends BaseController
             );
         }
 
-        return redirect()->to(base_url() . "/cajas/arqueo/$id");
+        return redirect()->to(base_url() . "/cajas/arqueo/$caja_actual");
     }
 }
