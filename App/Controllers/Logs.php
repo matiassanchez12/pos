@@ -48,9 +48,9 @@ class Logs extends BaseController
 
     public function generar_respaldo()
     {
-        $db_host = 'localhost';
-        $db_name = 'pos';
-        $db_user = 'root';
+        $db_host = 'db4free.net';
+        $db_name = 'posdb123';
+        $db_user = 'posdb123';
         $db_pass = '379784577a';
 
         Logs::Export_Database($db_host, $db_user, $db_pass, $db_name);
