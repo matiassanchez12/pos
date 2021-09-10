@@ -45,8 +45,9 @@
         });
 
         $(document).ready(function() {
-            if ("<?php echo session()->res; ?>" == 'ok') {
+            if ("<?php echo session()->res; ?>" === 'ok') {
                 $(".toast").toast('show');
+                <?php $_SESSION['res'] = '';?>
             }
         });
     </script>

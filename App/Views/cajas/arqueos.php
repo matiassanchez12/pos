@@ -7,7 +7,6 @@
         <div>
             <p>
                 <a href="<?php echo base_url(); ?>/cajas/nuevo_arqueo" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</a>
-                <a href="<?php echo base_url(); ?>/cajas/eliminados" class="btn btn-info">Eliminados <i class="fas fa-arrow-right"></i></a>
             </p>
         </div>
         <!-- DataTales Example -->
@@ -37,8 +36,8 @@
                                     <td><?php echo $dato['monto_inicial']; ?></td>
                                     <td><?php echo $dato['monto_final']; ?></td>
                                     <td><?php echo $dato['total_ventas']; ?></td>
-                                    <td class="text-center"><a href="<?php echo base_url() . '/cajas/cambiar_estado/' . $dato['id'] ?>" class="btn <?php echo ($dato['estatus']) ? 'btn-success' : 'btn-secondary' ?>"> <?php echo ($dato['estatus']) ? 'Abierta' : 'Cerrada'; ?></a></td>
-                                    <td class="text-center"><a href="<?php echo $dato['estatus'] ? base_url() . '/cajas/cerrar_caja' : base_url() . '/cajas/mostrar_cierre' ?>" class="btn btn-sm rounded-circle <?php echo ($dato['estatus']) ? 'btn-danger' : 'btn-primary' ?>"><i class="fas <?php echo ($dato['estatus']) ? 'fa-lock' : 'fa-file-pdf' ?>"></i></a></td>
+                                    <td class="text-center"><a href="<?php echo base_url() . '/cajas/cambiar_estado/' . $dato['id'] . '/' . $caja_actual ?>" class="btn <?php echo ($dato['estatus']) ? 'btn-success' : 'btn-secondary' ?>"> <?php echo ($dato['estatus']) ? 'Abierta' : 'Cerrada'; ?></a></td>
+                                    <td class="text-center"><a href="<?php echo $dato['estatus'] ? base_url() . '/cajas/cerrar_caja/'. 1 : base_url() . '/cajas/mostrar_cierre' ?>" class="btn btn-sm rounded-circle <?php echo ($dato['estatus']) ? 'btn-danger' : 'btn-primary' ?>"><i class="fas <?php echo ($dato['estatus']) ? 'fa-lock' : 'fa-file-pdf' ?>"></i></a></td>
                                 </tr>
                             <?php } ?>
                         </tbody>

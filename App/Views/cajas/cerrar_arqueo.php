@@ -10,7 +10,7 @@
             </div>
         <?php } ?>
 
-        <form method="POST" action="<?php echo base_url(); ?>/cajas/cerrar_caja">
+        <form method="POST" action="<?php echo base_url('/cajas/cerrar_caja/'. $caja_actual); ?>">
 
             <input type="hidden" name="id_arqueo" id="id_arqueo" value="<?php echo $arqueo['id']; ?>">
             

@@ -10,14 +10,14 @@
             <div class="p-4">
                 <?php
                 foreach ($permisos as $permiso) {   ?>
-                    <input class="form-checkbox-input" type="checkbox" value="<?php echo $permiso['id'] . "-" . $permiso['ruta'] ?>" name="permisos[]" <?php echo (isset($permisoAsignado[$permiso['id']])) ? 'checked' : '' ?>>
+                    <input class="form-checkbox-input" id="<?php echo $permiso['id']; ?>" nombre="<?php echo $permiso['id']; ?>" type="checkbox" value="<?php echo $permiso['id'] . "-" . $permiso['ruta'] ?>" name="permisos[]" <?php echo (isset($permisoAsignado[$permiso['id']])) ? 'checked' : '' ?>>
 
-                    <label class="form-checkbox-input"><?php echo $permiso['nombre'] . "- Ruta : " . $permiso['ruta']; ?></label>
+                    <label for="<?php echo $permiso['id']; ?>" class="form-checkbox-input"><?php echo $permiso['nombre'] . "- Ruta : " . $permiso['ruta']; ?></label>
                     <br>
                 <?php }  ?>
             </div>
 
-            <button type="submit" class="btn btn-success mt-4">Guardar</button>
+            <button type="submit" class="btn btn-success ">Guardar</button>
         </form>
     </div>
     <!-- /.container-fluid -->

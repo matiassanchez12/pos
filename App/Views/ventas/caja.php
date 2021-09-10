@@ -130,6 +130,7 @@ $idVentaTmp = uniqid();
                 if (e.which == enterKey) {
                     if (id_producto != null && id_producto != 0 && cantidad > 0) {
                         $.ajax({
+                            type: 'POST',
                             url: '<?php echo base_url(); ?>/temporalCompras/insertar/' + id_producto + "/" + cantidad + "/" + id_venta,
                             dataType: 'json',
                             success: function(resultado) {
@@ -144,7 +145,7 @@ $idVentaTmp = uniqid();
                                         $("#id_producto").val('');
                                         $("#nombre").val('');
                                         $("#codigo").val('');
-                                        // $("#cantidad").val('1');
+                                        // $("#cantidad").val('1'); 
                                         $("#precio_compra").val('');
                                         $("#subtotal").val('');
                                     }

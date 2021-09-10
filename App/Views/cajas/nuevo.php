@@ -10,7 +10,7 @@
             </div>
         <?php } ?>
 
-        <form method="POST" action="<?php echo base_url(); ?>/cajas/insertar">
+        <form method="POST" action="<?php echo base_url() . '/cajas/insertar'; ?>">
 
             <div class="form-group card p-4 shadow">
                 <div class="row">

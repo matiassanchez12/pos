@@ -80,7 +80,7 @@ $array = $a->ProductosMasVendido();
 
         <!-- Earnings (Monthly) Card Example -->
 
-        <a class="col-xl-3 col-md-3 mb-4 btn" href="<?php echo base_url(); ?>/productos/mostrarMinimos">
+        <a class="col-xl-3 col-md-3 mb-4 btn" href="<?php echo base_url(); ?>/usuarios">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -123,14 +123,14 @@ $array = $a->ProductosMasVendido();
             <div class="card shadow">
                 <!-- -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">PRODUCTOS MAS VENDIDOS</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Productos mas vendidos</h6>
                     <div>
                         <label for="mostrar">Mostrar</label>
                         <input type="checkbox" id="mostrar" name="mostrar" checked>
                     </div>
                 </div>
 
-                <div class="card-body algo" id="grafico-1">
+                <div class="card-body" id="grafico-1">
                     <div class="chart-area">
                         <canvas id="myAreaChart"></canvas>
                     </div>
@@ -142,16 +142,27 @@ $array = $a->ProductosMasVendido();
             <div class="card shadow">
 
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">PRODUCTOS MAS VENDIDOS</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Empleados mas activos</h6>
                     <div>
-                        <label for="mostrar">Mostrar</label>
-                        <input type="checkbox" id="mostrar" name="mostrar">
+                        <label for="mostrar_dos">Mostrar</label>
+                        <input type="checkbox" id="mostrar_dos" name="mostrar_dos" checked>
                     </div>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body" id="grafico-2">
                     <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-primary"></i> Direct
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-success"></i> Social
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-info"></i> Referral
+                        </span>
                     </div>
                 </div>
             </div>
@@ -179,6 +190,15 @@ $array = $a->ProductosMasVendido();
         })
     });
 
+    $(function() {
+        $("#mostrar_dos").click(function() {
+            if ($('#grafico-2').attr("hidden") == undefined) {
+                $('#grafico-2').attr("hidden", true);
+            } else {
+                $('#grafico-2').attr("hidden", false);
+            }
+        })
+    });
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#858796';
@@ -300,5 +320,40 @@ $array = $a->ProductosMasVendido();
                 }
             }
         }
+    });
+
+    Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#858796';
+
+    // Pie Chart Example
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["Direct", "Referral", "Social"],
+            datasets: [{
+                data: [55, 30, 15],
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 80,
+        },
     });
 </script>

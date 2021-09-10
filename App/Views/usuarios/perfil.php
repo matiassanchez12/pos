@@ -1,5 +1,5 @@
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid" style="display: flex;align-items: center;flex-direction: column;">
 
     <!-- Page Heading -->
     <input type="hidden" value="<?php echo $datos['id']; ?>" name="id">
@@ -53,7 +53,9 @@
 
         <input type="text" name="src_avatar" id="src_avatar" hidden>
     </div>
-    <a href="<?php echo base_url() . "/usuarios/editar/" . $datos['id']; ?>" class="btn btn-primary mt-3">Editar mi perfil</a>
+    <div class="w-75">
+        <a href="<?php echo base_url() . "/usuarios/editar/" . $datos['id']; ?>" class="btn btn-primary mt-3">Editar mi perfil</a>
+    </div>
 </div>
 <!-- /.container-fluid -->
 
