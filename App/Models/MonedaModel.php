@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 
-class MonedasModel extends Model
+class MonedaModel extends Model
 {
     protected $table      = 'monedas';
     protected $primaryKey = 'id';

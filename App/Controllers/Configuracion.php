@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\ConfiguracionModel;
-use App\Models\MonedasModel;
+use App\Models\MonedaModel;
 use FPDF;
 use Imagenes;
 
@@ -17,7 +17,7 @@ class Configuracion extends BaseController
     public function __construct()
     {
         $this->configuracion = new ConfiguracionModel();
-        $this->monedas = new MonedasModel();
+        $this->monedas = new MonedaModel();
 
         helper(['form']);
 
