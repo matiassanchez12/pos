@@ -32,10 +32,10 @@ class Database extends Config
 	 */
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
-		'username' => 'root',
+		'hostname' => 'db4free.net',
+		'username' => 'posdb123',
 		'password' => '379784577a',
-		'database' => 'pos',
+		'database' => 'posdb123',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
