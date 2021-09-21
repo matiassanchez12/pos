@@ -30,10 +30,6 @@
   border: #4e73dfbf 2px solid;
 }
 
-.btn-card{
-  background-color: red;
-}
-
 .btn-card:focus {
   outline: none;
   box-shadow: none;
