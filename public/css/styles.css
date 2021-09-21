@@ -30,3 +30,7 @@
   border: #4e73dfbf 2px solid;
 }
 
+.btn-card:hover {
+  outline: none;
+  box-shadow: none;
+}

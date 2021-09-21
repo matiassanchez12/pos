@@ -43,7 +43,7 @@ $array = $a->ProductosMasVendido();
             </div>
         </div> -->
 
-        <a class="col-xl-3 col-md-6 mb-4 btn" href="<?php echo base_url(); ?>/productos">
+        <a class="col-xl-3 col-md-6 mb-4 btn btn-card" href="<?php echo base_url(); ?>/productos">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -61,7 +61,7 @@ $array = $a->ProductosMasVendido();
         </a>
 
         <!-- Earnings (Monthly) Card Example -->
-        <a class="col-xl-3 col-md-6 mb-4 btn" href="<?php echo base_url(); ?>/ventas">
+        <a class="col-xl-3 col-md-6 mb-4 btn btn-card" href="<?php echo base_url(); ?>/ventas">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -80,7 +80,7 @@ $array = $a->ProductosMasVendido();
 
         <!-- Earnings (Monthly) Card Example -->
 
-        <a class="col-xl-3 col-md-3 mb-4 btn" href="<?php echo base_url(); ?>/usuarios">
+        <a class="col-xl-3 col-md-3 mb-4 btn btn-card" href="<?php echo base_url(); ?>/usuarios">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -98,7 +98,7 @@ $array = $a->ProductosMasVendido();
         </a>
 
         <!-- Pending Requests Card Example -->
-        <a class="col-xl-3 col-md-3 mb-4 btn" href="<?php echo base_url(); ?>/productos/mostrarMinimos">
+        <a class="col-xl-3 col-md-3 mb-4 btn btn-card" href="<?php echo base_url(); ?>/productos/mostrarMinimos">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
