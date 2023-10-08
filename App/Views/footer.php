@@ -5,10 +5,10 @@
             <div class="copyright text-center my-auto">
                 <span>Copyright &copy; Sanchez Matias <?php echo date('Y'); ?></span>
             </div>
-            <div>
-                <a href="http://facebook.com/" target="_blank">Facebook</a>
+            <div class="d-flex justify-content-center my-1 gap-2">
+                <a href="http://facebook.com/" target="_blank">X</a>
                 &middot;
-                <a href="http://facebook.com/" target="_blank">WebSite</a>
+                <a href="http://matias-sanchez.vercel.com/" target="_blank">WebSite</a>
             </div>
         </div>
     </footer>
@@ -25,7 +25,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-   
+
     <script>
         $(document).ready(function() {
             $("#dataTable").DataTable({
@@ -39,7 +39,7 @@
                 "info": false
             });
         });
-   
+
         $('#modal-confirma').on('show.bs.modal', function(e) {
             $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         });
@@ -47,7 +47,7 @@
         $(document).ready(function() {
             if ("<?php echo session()->res; ?>" === 'ok') {
                 $(".toast").toast('show');
-                <?php $_SESSION['res'] = '';?>
+                <?php $_SESSION['res'] = ''; ?>
             }
         });
     </script>

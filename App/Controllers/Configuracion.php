@@ -182,6 +182,7 @@ class Configuracion extends BaseController
 
     public function actualizarConfiguracionGeneral()
     {
+        var_dump($this->request);
         if ($this->request->getMethod() == "post") {
             $this->configuracion->whereIn('nombre', ['color_tema'])->set(
                 ['valor' => $this->request->getPost('tema')]
@@ -299,7 +300,7 @@ class Configuracion extends BaseController
         $decimales = $configuracion->whereIn('nombre', ['separador_miles'])->first()['valor'];
         $miles = $configuracion->whereIn('nombre', ['separador_miles'])->first()['valor'];
         $nro_decimales = $configuracion->whereIn('nombre', ['nro_decimales'])->first()['valor'];
-        
+
         return number_format(floatval($aux_precio), $nro_decimales, $decimales, $miles);
     }
 }

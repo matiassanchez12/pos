@@ -173,7 +173,7 @@ class Usuarios extends BaseController
     {
         $user_session = session();
         $id = $user_session->id_usuario;
-        
+
         $usuario = $this->usuarios->where('id', $id)->first();
         $cajas = $this->cajas->where('activo', 1)->findAll();
         $roles = $this->roles->where('activo', 1)->findAll();
@@ -343,8 +343,9 @@ class Usuarios extends BaseController
             $password = $this->request->getPost('password');
             $datosUsuario = $this->usuarios->where('usuario', $usuario)->first();
 
-            if ($datosUsuario != null) {
-                if (password_verify($password, $datosUsuario['password'])) {
+            if ($datosUsuario) {
+                // if (password_verify($password, $datosUsuario['password'])) {
+                if ($password === $datosUsuario['password']) {
                     $datosSesion = [
                         'id_usuario' => $datosUsuario['id'],
                         'nombre' => $datosUsuario['nombre'],

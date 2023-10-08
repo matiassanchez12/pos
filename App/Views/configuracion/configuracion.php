@@ -2,8 +2,7 @@
     <h4 class="m-0 text-gray-800"><i class="fas fa-sliders-h"></i> Configuraciones</h4>
     <br>
 
-    <form action="<?php echo base_url(); ?>/configuracion/actualizarConfiguracionGeneral" method="post">
-
+    <form action="<?php echo base_url(); ?>/configuracion/actualizarConfiguracionGeneral" method="post" novalidate>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link active" id="estetica-tab" onclick="mostrarTicket(1)" data-toggle="tab" href="#estetica" role="tab" aria-controls="estetica" aria-selected="true">Personalizar vista</a>
@@ -141,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="submit" id="btn-submit" class="btn btn-success" value="Guardar cambios">
+                <button type="submit" id="btn-submit" class="btn btn-success">Guardar cambios</button>
             </div>
         </div>
         <hr class="sidebar-divider d-none d-md-block">
@@ -198,8 +197,6 @@
         let nro_decimales = $('#nro_decimales').val();
         let decimales = $('#decimales').val();
         let miles = $('#miles').val();
-
-        console.log(ticket_leyenda);
 
         return `${direccion}/${telefono}/${moneda}/${ticket_leyenda}/${nro_decimales}/'${decimales}'/'${miles}'`;
     }
