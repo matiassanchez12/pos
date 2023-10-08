@@ -8,7 +8,7 @@
         <div class="row">
             <div class=" p-4 ml-5 form-group col-12 col-sm-4 text-center" style="align-self: center;">
                 <label for="imagen_usuario" class="mt-4 mb-4 mx-auto d-block position-relative" style="width:180px; height:150px;">
-                    <img src="<?php echo base_url() . "/images/avatars/users-upload/" .  $datos['id'] . ".png?" . time(); ?>" id="imagen" class="img-responsive rounded-circle img-thumbnail" alt="img" style="max-width: 100%; height:150px">
+                    <img src="<?php echo base_url() . "/public/images/avatars/users-upload/" .  $datos['id'] . ".png?" . time(); ?>" id="imagen" class="img-responsive rounded-circle img-thumbnail" alt="img" style="max-width: 100%; height:150px">
                 </label>
             </div>
 
@@ -23,26 +23,26 @@
                                     <b class="text-gray-900">Usuario:</b>
                                 </td>
                                 <td class="text-gray-800"><?php echo $datos['usuario']; ?></td>
-                            </tr >
+                            </tr>
                             <tr style="font-size: 1.1em;">
                                 <td>
                                     <b class="text-gray-900">Rol:</b>
                                 </td>
                                 <td class="text-gray-800"><?php foreach ($roles as $rol) {
-                                        if ($rol['id'] == $datos['id_rol']) {
-                                            echo $rol['nombre'];
-                                        }
-                                    } ?></td>
+                                                                if ($rol['id'] == $datos['id_rol']) {
+                                                                    echo $rol['nombre'];
+                                                                }
+                                                            } ?></td>
                             </tr>
                             <tr style="font-size: 1.1em;">
                                 <td>
                                     <b class="text-gray-900">Caja:</b>
                                 </td>
                                 <td class="text-gray-800"><?php foreach ($cajas as $caja) {
-                                        if ($caja['id'] == $datos['id_caja']) {
-                                            echo $caja['nombre_caja'];
-                                        }
-                                    } ?></td>
+                                                                if ($caja['id'] == $datos['id_caja']) {
+                                                                    echo $caja['nombre_caja'];
+                                                                }
+                                                            } ?></td>
                             </tr>
                         </tbody>
                     </table>

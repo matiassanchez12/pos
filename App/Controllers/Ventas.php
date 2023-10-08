@@ -41,7 +41,7 @@ class Ventas extends BaseController
     {
         //cuando activo sea 1, osea este el prod activo, pasarlo por array
         $datos = $this->ventas->buscarCajayCliente(1);
-        
+
         $data = [
             'titulo' => 'Ventas',
             'datos' => $datos
@@ -62,7 +62,7 @@ class Ventas extends BaseController
     public function eliminadas($activo = 0)
     {
         $datos = $this->ventas->buscarCajayCliente(0);
-        
+
         $data = [
             'titulo' => 'Ventas eliminadas',
             'datos' => $datos
@@ -92,10 +92,10 @@ class Ventas extends BaseController
 
         if ($resultadoID) {
             $folio++;
-            $this->cajas->update($session->id, ['folio'=>$folio]);
- 
+            $this->cajas->update($session->id, ['folio' => $folio]);
+
             $resultadoCompra = $this->temporal_compra->porCompra($id_venta);
-            
+
             foreach ($resultadoCompra as $row) {
                 $this->detalle_venta->save([
                     'id_venta' => $resultadoID,
@@ -152,7 +152,7 @@ class Ventas extends BaseController
 
         $pdf->SetFont('Arial', 'B', 10);
 
-        $pdf->Image(base_url() . '/images/logotipo.png', 5, 7, 13, 13, 'png');
+        $pdf->Image(base_url() . '/public/images/logotipo.png', 5, 7, 13, 13, 'png');
 
         $pdf->Cell(55, 5, $nombreTienda, 0, 1, 'C');
 
@@ -160,7 +160,7 @@ class Ventas extends BaseController
             $pdf->SetFont('Arial', '', 9);
             $pdf->Cell(65, 5, $direccionTienda, 0, 1, 'C');
         }
-        
+
         if ($agregar_tel == 1) {
             $pdf->SetFont('Arial', '', 9);
             $pdf->Cell(65, 5, 'Telefono: ' . $telefonoTienda, 0, 1, 'C');
@@ -194,7 +194,7 @@ class Ventas extends BaseController
         foreach ($detalleVenta as $row) {
             $pdf->Cell(7, 5, $row['cantidad'], 0, 0, 'C');
             $pdf->Cell(35, 5, $row['nombre'], 0, 0, 'C');
-            $pdf->Cell(15, 5, $moneda. Configuracion::cambiarFormatoPrecio($row['precio']), 0, 0, 'C');
+            $pdf->Cell(15, 5, $moneda . Configuracion::cambiarFormatoPrecio($row['precio']), 0, 0, 'C');
             $totalImporte =  Configuracion::cambiarFormatoPrecio($row['cantidad'] * $row['precio']);
             $pdf->Cell(15, 5, $moneda . $totalImporte, 0, 1, 'R');
             $contador++;
@@ -203,7 +203,7 @@ class Ventas extends BaseController
         $pdf->Ln();
 
         $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(70, 5, 'Total '. $moneda . Configuracion::cambiarFormatoPrecio($datosVenta['total']), 0, 1, 'R');
+        $pdf->Cell(70, 5, 'Total ' . $moneda . Configuracion::cambiarFormatoPrecio($datosVenta['total']), 0, 1, 'R');
 
         $pdf->Ln();
 
@@ -222,6 +222,6 @@ class Ventas extends BaseController
 
         $this->ventas->update($id_venta, ['activo' => 0]);
 
-        return redirect()->to(base_url().'/ventas')->with('res', 'ok');
+        return redirect()->to(base_url() . '/ventas')->with('res', 'ok');
     }
 }

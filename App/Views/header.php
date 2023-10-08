@@ -28,17 +28,17 @@ $tamaño_fuente = Configuracion::GetFuente();
     <title>Sistema Punto de Venta</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?php echo base_url(); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo base_url(); ?>/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/public/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/public/css/sb-admin-2.css" rel="stylesheet">
 
-    <link href="<?php echo base_url(); ?>/css/styles.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/public/css/styles.css" rel="stylesheet">
 
-    <link href="<?php echo base_url(); ?>/js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-    <script src="<?php echo base_url(); ?>/vendor/jquery/jquery.min.js"></script>
+    <link href="<?php echo base_url(); ?>/public/js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <script src="<?php echo base_url(); ?>/public/vendor/jquery/jquery.min.js"></script>
 
 </head>
 
@@ -77,7 +77,7 @@ $tamaño_fuente = Configuracion::GetFuente();
 
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url(); ?>/inicio">
                 <div class="sidebar-brand-icon">
-                    <img class="img-profile rounded-circle img-fluid" style="width: 38px; height: 38px;" src=<?php echo base_url() . "/images/logotipo.png?" . time(); ?>>
+                    <img class="img-profile rounded-circle img-fluid" style="width: 38px; height: 38px;" src=<?php echo base_url() . "/public/images/logotipo.png?" . time(); ?>>
                 </div>
 
                 <div class="sidebar-brand-text mx-3"><?php echo $nombre_tienda; ?></div>
@@ -193,11 +193,11 @@ $tamaño_fuente = Configuracion::GetFuente();
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $user_session->nombre; ?></div>
-                                <img class="img-profile rounded-circle" src="<?php echo base_url() . "/images/avatars/users-upload/" . $user_session->id_usuario . ".png?" . time(); ?>">
+                                <img class="img-profile rounded-circle" src="<?php echo base_url() . "/public/images/avatars/users-upload/" . $user_session->id_usuario . ".png?" . time(); ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="<?php echo base_url() . '/usuarios/perfil'?>">
+                                <a class="dropdown-item" href="<?php echo base_url() . '/usuarios/perfil' ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2"></i>
                                     Perfil
                                 </a>
@@ -242,28 +242,28 @@ $tamaño_fuente = Configuracion::GetFuente();
 
 
 
-                <script src="<?php echo base_url(); ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <script src="<?php echo base_url(); ?>/public/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                <script src="<?php echo base_url(); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="<?php echo base_url(); ?>/public/vendor/datatables/jquery.dataTables.min.js"></script>
 
-                <script src="<?php echo base_url(); ?>/js/jquery-ui/jquery-ui.min.js"></script>
+                <script src="<?php echo base_url(); ?>/public/js/jquery-ui/jquery-ui.min.js"></script>
 
                 <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
 
-                <link href="<?php echo base_url(); ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+                <link href="<?php echo base_url(); ?>/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-                <script src="<?php echo base_url(); ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <script src="<?php echo base_url(); ?>/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
                 <!-- Custom scripts for all pages-->
-                <script src="<?php echo base_url(); ?>/js/sb-admin-2.min.js"></script>
+                <script src="<?php echo base_url(); ?>/public/js/sb-admin-2.min.js"></script>
 
                 <!-- Page level plugins -->
 
-                <script src="<?php echo base_url(); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+                <script src="<?php echo base_url(); ?>/public/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
                 <!-- Page level custom scripts -->
-                <script src="<?php echo base_url(); ?>/js/demo/datatables-demo.js"></script>
+                <script src="<?php echo base_url(); ?>/public/js/demo/datatables-demo.js"></script>
 
-                <script src="<?php echo base_url(); ?>/js/Chart.min.js"></script>
+                <script src="<?php echo base_url(); ?>/public/js/Chart.min.js"></script>
 
-                <script src="<?php echo base_url(); ?>/js/Chart.js"></script>
+                <script src="<?php echo base_url(); ?>/public/js/Chart.js"></script>

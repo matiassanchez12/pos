@@ -234,7 +234,7 @@ class Configuracion extends BaseController
 
         $pdf->SetFont('Arial', 'B', 10);
 
-        $pdf->Image(base_url() . '/images/logotipo.png', 5, 7, 13, 13, 'png');
+        $pdf->Image(base_url() . '/public/images/logotipo.png', 5, 7, 13, 13, 'png');
 
         $pdf->Cell(55, 5, $nombreTienda, 0, 1, 'C');
 

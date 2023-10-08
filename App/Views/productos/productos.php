@@ -39,7 +39,7 @@
                                         <a href="#" data-href="" data-toggle="modal" data-target="#modal-imagen" data-placement="top" title="Ver codigo de barra" class="btn-bar btn btn-primary btn-sm rounded-circle ml-2"><i class="fas fa-barcode"></i></a>
                                         <a href="#" data-href="" data-toggle="modal" data-target="#modal-imagen" data-placement="top" title="Mostrar imagen" class="btn-img btn btn-secondary btn-sm rounded-circle ml-2"><i class="fas fa-camera"></i></a>
                                         <a href="<?php echo base_url() . '/productos/editar/' . $dato['id'] ?>" title="Editar" class="btn btn-warning btn-sm rounded-circle ml-2"><i class="fas fa-pencil-alt"></i></a>
-                                        <a href="#" data-href="<?php echo base_url() . '/productos/eliminar/' . $dato['id'] ?>"  data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm rounded-circle ml-2"><i class="fas fa-trash"></i></a>
+                                        <a href="#" data-href="<?php echo base_url() . '/productos/eliminar/' . $dato['id'] ?>" data-toggle="modal" data-target="#modal-confirma" data-placement="top" title="Eliminar" class="btn btn-danger btn-sm rounded-circle ml-2"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -100,7 +100,7 @@
 
             $('#exampleModalLabel1').replaceWith('<h5 class="modal-title text-light" id="exampleModalLabel1">Imagen del producto</h5>');
             $('#modal-imagen').modal('show');
-            $('#imagen_modal').append('<img src="<?php echo base_url() . "/images/productos/"; ?>' + id + '.png? <?php echo time(); ?>" id="imagen_product" class="img-responsive rounded-circle img-thumbnail" alt="img" style="max-width: 100%; height:150px">');
+            $('#imagen_modal').append('<img src="<?php echo base_url() . "/public/images/productos/"; ?>' + id + '.png? <?php echo time(); ?>" id="imagen_product" class="img-responsive rounded-circle img-thumbnail" alt="img" style="max-width: 100%; height:150px">');
         })
 
         $('#modal-imagen').on('hidden.bs.modal', function() {
@@ -113,11 +113,10 @@
 
             $('#exampleModalLabel1').replaceWith('<h5 class="modal-title text-light" id="exampleModalLabel1">Codigo de barra</h5>');
             $('#modal-imagen').modal('show');
-            $('#imagen_modal').append('<img src="<?php echo base_url() . "/images/barcode/"; ?>' + codigo + '.png? <?php echo time(); ?>" id="imagen_product" class="img-responsive img-thumbnail" alt="img" style="max-width:100%; object-fit: cover; height: 150px;">');
+            $('#imagen_modal').append('<img src="<?php echo base_url() . "/public/images/barcode/"; ?>' + codigo + '.png? <?php echo time(); ?>" id="imagen_product" class="img-responsive img-thumbnail" alt="img" style="max-width:100%; object-fit: cover; height: 150px;">');
         })
 
         $('#modal-imagen').on('hidden.bs.modal', function() {
             $('#imagen_product').remove();
         })
-
     </script>

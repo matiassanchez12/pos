@@ -53,7 +53,7 @@
                 <input type="file" name="tienda_logo" id="tienda_logo" onchange="previewFile()" accept="image/*" hidden>
 
                 <label for="tienda_logo" class="mt-4 mb-4 mx-auto d-block position-relative" style="width:180px; height:200px;">
-                    <img src="<?php echo base_url() . "/images/logotipo.png?" . time(); ?>" id="imagen" class="btn img-effect img-responsive p-0 img-thumbnail" alt="img" style="max-width: 100%; height:200px">
+                    <img src="<?php echo base_url() . "/public/images/logotipo.png?" . time(); ?>" id="imagen" class="btn img-effect img-responsive p-0 img-thumbnail" alt="img" style="max-width: 100%; height:200px">
 
                     <span tabindex="0" class="position-absolute ml-3" data-toggle="tooltip" title="Cargar imagen en formato png de 150x150 pixeles">
                         <button class="btn btn-dark rounded-circle btn-sm" style="pointer-events: none; width: 30px; position: relative; right: 1em;" type="button" disabled><i class="fas fa-info"></i></button>

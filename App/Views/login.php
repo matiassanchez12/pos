@@ -19,15 +19,15 @@ if ($user_session != null) {
     <title>Sistema Punto de Venta</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<?php echo base_url(); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>/public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo base_url(); ?>/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>/css/styles-login.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/public/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/public/css/styles-login.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="<?php echo base_url(); ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>/public/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -68,7 +68,7 @@ if ($user_session != null) {
                                             </div>
                                             <input type="password" class="form-control" value="admin" name="password" id="password" placeholder="Ingresar Contraseña..." aria-label="Username" aria-describedby="addon-wrapping">
                                         </div>
-                                   
+
                                         <div class="form-group input-group align-items-center mb-3 mt-3">
                                             <input type="checkbox" name="remember" id="remember" style="margin-right:10px; width: 15px; height: 15px;">
                                             <label for="remember" class="m-0"> Recordar usuario</label>
