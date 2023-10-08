@@ -11,7 +11,7 @@
 ._*
 
 /vendor/
-/.env
+.env
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
